@@ -1,8 +1,8 @@
 export default function createReducers() {
   return {
     addItem: (payload, state) => ({
-        ...state,
-        todo: [...state.todo, { value: payload.text, status: "inProgress" }]
+      ...state,
+      todo: [...state.todo, { value: payload.text, status: "inProgress" }]
     }),
     removeItem: (payload, state) => ({
       ...state,
@@ -12,19 +12,19 @@ export default function createReducers() {
       ]
     }),
     editItem: (payload, state) => {
-      let copy = Object.assign({}, state)
+      let obj = Object.assign({}, state)
       console.log(payload.id)
-      copy.todo[payload.id].value = payload.value
+      obj.todo[payload.id].value = payload.value
       return {
-        todo: [...copy.todo]
+        todo: [...obj.todo]
       }
     },
     statusItem: (payload, state) => {
-      let copy = Object.assign({}, state)
+      let obj = Object.assign({}, state)
       console.log(payload.id)
-      copy.todo[payload.id].status = payload.status
+      obj.todo[payload.id].status = payload.status
       return {
-        todo: [...copy.todo]
+        todo: [...obj.todo]
       }
     },
   }

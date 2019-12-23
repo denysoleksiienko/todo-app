@@ -1,6 +1,7 @@
 import Component from "./Component.js"
 import store from "./store/index.js"
 
+
 export default class ListComponent extends Component {
   constructor(app, settings) {
     const template = document.getElementById('list').content.cloneNode(true);
@@ -15,6 +16,8 @@ export default class ListComponent extends Component {
 
     this.submit.addEventListener('click', this.addItem.bind(this));
     this.input.addEventListener('keydown', this.addItem.bind(this));
+
+    this.count = document.querySelector('.js-count');
 
     // const handleClick = event => {
     //   event.preventDefault();
@@ -79,6 +82,11 @@ export default class ListComponent extends Component {
       </ul>`;
     }
     this.setupListeners();
+
+    const suffix = store.state.todo.length !== 1 ? 's' : '';
+    this.count.innerHTML = `
+      <small>You have</small><span> ${store.state.todo.length} </span><small>task ${suffix} today </small>
+    `;
   }
 
   setupListeners() {

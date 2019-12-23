@@ -217,6 +217,14 @@ ul {
 	text-transform: uppercase;
 }
 
+.js-count span {
+	color: #ff0000;
+	font-size: 20px;
+}
+.js-count small {
+	font-size: 16px;
+}
+
 @media screen and (max-width: 988px) {
 	.box {
 		width: 350px;
