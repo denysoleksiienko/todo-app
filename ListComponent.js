@@ -41,8 +41,7 @@ export default class ListComponent extends Component {
         this.input.value = '';
 
       } else {
-
-        alert('Enter one task');
+        alert('Please, enter something');
         this.input.focus();
       }
     }
@@ -71,7 +70,7 @@ export default class ListComponent extends Component {
             }
             return `
             <li id="item ${index}" class="${todoItem.status}">
-            <input type="checkbox" title="Complete" class="checkbox" ${checked}>
+              <input type="checkbox" id="check" title="Complete" class="checkbox " ${checked}>
               <span>${todoItem.value}</span>${editButton}<button class="del">Delete</button>
             </li>
           `}

@@ -22,11 +22,12 @@
         <h2 class="login__signin">Sign in</h2>
         <form class="login__form" method="post">
           <div class="inputBox">
-            <input id="login__input" class="login__form-input" type="text" name="login" required="">
+            <input id="login__input" class="login__form-input" type="text" name="login" required="" autocomplete="off">
             <label>Username</label>
           </div>
           <div class="inputBox">
-            <input id="pass__input" class="login__form-input" type="password" name="password" required="">
+            <input id="pass__input" class="login__form-input" type="password" name="password" required=""
+              autocomplete="off">
             <label>Password</label>
           </div>
           <p id="error__login"></p>
@@ -39,14 +40,18 @@
   </template>
 
   <template id="list">
-    <div class="box">
+    <div class="box box-list">
       <section class="app__input">
         <h2 class="app__heading">What you have done</h2>
         <div class="js-items"></div>
         <form class="new-item js-form">
-          <label for="new-item-field" class="new-item__label c-label">Add a new item</label>
-          <input type="text" class="new-item__details c-input-field" id="new-item-field" autocomplete="off">
+          <div class="inputBox">
+            
+            <input type="text" class="new-item__details c-input-field" id="new-item-field" required="">
+            <label for="new-item-field" class="new-item__label c-label">Add a new item</label>
+          </div>
           <button class="c-button new-item__button">Add task</button>
+          <p id="error__task"></p>
         </form>
       </section>
       <aside class="app__status">
