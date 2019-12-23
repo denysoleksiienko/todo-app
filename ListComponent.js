@@ -51,7 +51,7 @@ export default class ListComponent extends Component {
         this.input.value = '';
         request.createTodo(value, newDate, false);
       } else {
-        alert('Please, enter something');
+        alert('Please, enter something. Text should be at least 5 characters');
         this.input.focus();
       }
     }
