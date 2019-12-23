@@ -1,6 +1,5 @@
 # todo-app
-## Demo:
-https://denysoleksiienko.github.io/todo-app
+## Demo: https://denysoleksiienko.github.io/todo-app
 
 ToDo final project
 
