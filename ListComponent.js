@@ -1,5 +1,6 @@
 import Component from "./Component.js"
 import store from "./store/index.js"
+import request from "./NetworkRequest.js"
 
 
 export default class ListComponent extends Component {
@@ -35,14 +36,20 @@ export default class ListComponent extends Component {
   addItem(event) {
     if (event.key === 'Enter' || event.type === 'click') {
       event.preventDefault();
+      let newDate = new Date();
       let value = this.input.value.trim();
-      if (value.length) {
+
+      // on server "error: "Text should be at least 5 characters""
+      if (value.length >= 5) {
         store.dispatch('addItem', {
-          text: value,
+          "text": value,
+          "createDate": newDate,
+          "completedAt": null,
+          "completed": false,
         });
         this.input.focus();
         this.input.value = '';
-
+        request.createTodo(value, newDate, false);
       } else {
         alert('Please, enter something');
         this.input.focus();
@@ -57,27 +64,27 @@ export default class ListComponent extends Component {
       this.anchor.innerHTML = `
         <ul>
           ${
-          store.state.todo.map((todoItem, index) => {
-            if (id == index) {
-              return `
+        store.state.todo.map((todoItem, index) => {
+          if (id == index) {
+            return `
               <li id="item ${index}"><input type="text" value="${value}">
                 <button class="save">Edit task</button>
               </li>
-              `
-            } else {
-              let checked = "";
-              let editButton = '<button class="edit">Edit</button>';
-              if (todoItem.status === "finished") {
-                checked = "checked";
-                editButton = ""
-              }
-              return `
+            `
+          } else {
+            let checked = "";
+            let editButton = '<button class="edit">Edit</button>';
+            if (todoItem.status === "finished") {
+              checked = "checked";
+              editButton = ""
+            }
+            return `
               <li id="item ${index}" class="${todoItem.status}">
                 <input type="checkbox" id="check" title="Complete" class="checkbox" ${checked}>
                 <span>${todoItem.value}</span>${editButton}<button class="del">Delete</button>
               </li>
             `}
-          }).join('')
+        }).join('')
         }
       </ul>`;
     }
@@ -95,6 +102,7 @@ export default class ListComponent extends Component {
     this.anchor.querySelectorAll('.del').forEach((button, id) => {
       button.addEventListener('click', () => {
         store.dispatch('removeItem', { id })
+        request.deleteTodo(button.parentElement.parentElement.id);
       })
     })
 

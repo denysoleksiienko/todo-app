@@ -13,7 +13,7 @@ export default class LoginComponent extends Component {
     console.dir(store);
 
     this.setupListeners();
-    request.authRequest(this.settings);
+    request.checkAuth(this.settings);
   }
 
   errorLogin(value) {
@@ -30,15 +30,15 @@ export default class LoginComponent extends Component {
     const password = document.querySelector('#pass__input').value.trim();
 
     if (login && password) {
-      request.loginRequest(login, password, this.settings);
+      request.loginAuth(login, password, this.settings);
       // store
       console.dir(store);
 
     } else if ((!login && password) || (login && !password)) {
-      login ? this.errorLogin('Please, enter your login.') : this.errorLogin('Please, enter your password.');
+      login ? this.errorLogin('Enter your password.') : this.errorLogin('Enter your login.');
   
     } else if (!login && !password) {
-      this.errorLogin('Please, enter your login and password.');
+      this.errorLogin('Enter your login and password.');
      }
   }
 

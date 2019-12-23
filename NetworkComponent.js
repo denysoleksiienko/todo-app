@@ -12,13 +12,13 @@ export default class NetworkRequest {
     return error.innerText = value;
   }
 
-  loginRequest(login, password, settings) {
+  loginAuth(login, password, settings) {
     fetch('https://todo-app-back.herokuapp.com/login', {
       method: 'POST',
       body:
         JSON.stringify({
           email: login,
-          password: password
+          password: password,
         }),
       headers: {
         'Content-Type': 'application/json'
@@ -45,16 +45,17 @@ export default class NetworkRequest {
     .catch(error => error.json())
     .then(obj => {
       if (obj.error === 'User does not exist') {
-        console.log( 'no login' );
-        this.errorLogin('Please, enter a correct login');
+        this.errorLogin('Enter a correct login');
+        console.log( 'user is incorrect' );
+
       } else if (obj.error === 'Wrong password') {
-        this.errorLogin('Please, enter a correct password');
-        console.log( 'no pass' );
+        this.errorLogin('Enter a correct password');
+        console.log( 'password is incorecct' );
       }
     });
   }
 
-  authRequest(settings) {
+  checkAuth(settings) {
     if (localStorage.getItem('token')) {
       fetch('https://todo-app-back.herokuapp.com/me', {
         method: 'GET',
@@ -78,7 +79,37 @@ export default class NetworkRequest {
           console.log( store );
           link(settings.redirect)
         }
-      }).catch(error => console.log(error));
+      })
+      .catch(error => console.log(error));
     }
+  }
+
+  createTodo(value, date, completed) {
+    fetch('https://todo-app-back.herokuapp.com/todos', {
+      method: 'POST',
+      body:
+        JSON.stringify({
+          "text": `${value}`,
+          "createDate": `${date}`,
+          "completed": `${completed}`,
+        }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${localStorage.getItem('token' )}`
+      }
+    }).then(resolved => {console.log( 'createItem' )})
+      .catch(err => console.log( err ))
+  }
+
+  deleteTodo(id) {
+    fetch(`https://todo-app-back.herokuapp.com/todos/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${localStorage.getItem('token' )}`
+      }
+    })
+    .then(resolved => {console.log( 'deleteItem' )})
+    .catch(err => console.log( err ))
   }
 }
