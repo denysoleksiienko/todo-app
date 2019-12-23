@@ -73,7 +73,7 @@ export default class ListComponent extends Component {
             }
             return `
             <li id="item ${index}" class="${todoItem.status}">
-              <input type="checkbox" id="check" title="Complete" class="checkbox " ${checked}>
+              <input type="checkbox" id="check" title="Complete" class="checkbox" ${checked}>
               <span>${todoItem.value}</span>${editButton}<button class="del">Delete</button>
             </li>
           `}
@@ -85,7 +85,7 @@ export default class ListComponent extends Component {
 
     const suffix = store.state.todo.length !== 1 ? 's' : '';
     this.count.innerHTML = `
-      <small>You have</small><span> ${store.state.todo.length} </span><small>task ${suffix} today </small>
+      <small>You have</small><span> ${store.state.todo.length} </span><small>task${suffix} today </small>
     `;
   }
 
