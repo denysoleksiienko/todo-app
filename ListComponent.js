@@ -1,4 +1,4 @@
-import Component from "./component.js"
+import Component from "./Component.js"
 import store from "./store/index.js"
 
 export default class ListComponent extends Component {
