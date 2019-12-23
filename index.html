@@ -39,23 +39,25 @@
   </template>
 
   <template id="list">
-    <section class="app__input">
-      <h2 class="app__heading">What you have done</h2>
-      <div class="js-items"></div>
-      <form class="new-item js-form">
-        <label for="new-item-field" class="new-item__label c-label">Add a new item</label>
-        <input type="text" class="new-item__details c-input-field" id="new-item-field" autocomplete="off">
-        <button class="c-button new-item__button">Add task</button>
-      </form>
-    </section>
-    <aside class="app__status">
-      <p role="status" class="visually-hidden">You have done <span class="js-status">1 thing</span> today!</p>
-      <div class="app__decor js-count" aria-hidden="true">
-        <small>Done list</small>
-        <span>0</span>
-        <small>things today</small>
-      </div>
-    </aside>
+    <div class="box">
+      <section class="app__input">
+        <h2 class="app__heading">What you have done</h2>
+        <div class="js-items"></div>
+        <form class="new-item js-form">
+          <label for="new-item-field" class="new-item__label c-label">Add a new item</label>
+          <input type="text" class="new-item__details c-input-field" id="new-item-field" autocomplete="off">
+          <button class="c-button new-item__button">Add task</button>
+        </form>
+      </section>
+      <aside class="app__status">
+        <p role="status" class="visually-hidden">You have done <span class="js-status">1 thing</span> today!</p>
+        <div class="app__decor js-count" aria-hidden="true">
+          <small>Done list</small>
+          <span>0</span>
+          <small>things today</small>
+        </div>
+      </aside>
+    </div>
   </template>
 
   <!-- <template id="login">
