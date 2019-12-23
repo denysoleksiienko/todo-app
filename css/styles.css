@@ -1,0 +1,122 @@
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	font-family: sans-serif;
+	background: linear-gradient(45deg, #aa4b6b, #6b6b83, #3b8d99);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+}
+
+.login__header {
+	display: flex;
+	justify-content: center;
+}
+
+.login__header-title {
+	color: #fff;
+	font-size: 40px;
+}
+
+.box {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 350px;
+	height: 385px;
+	padding: 40px;
+	background: rgba(0, 0, 0, .4);
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+	border-radius: 10px;
+}
+
+.box h2 {
+	margin: 0 0 30px;
+	padding: 0;
+	color: #fff;
+	text-align: center;
+}
+
+.box .inputBox {
+	position: relative;
+}
+
+.box .inputBox input {
+	width: 100%;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #fff;
+	letter-spacing: 1px;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #fff;
+	outline: none;
+	background: transparent;
+}
+
+.box .inputBox label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #fff;
+	pointer-events: none;
+	transition: .5s;
+}
+
+.box .inputBox input:focus~label,
+.box .inputBox input:valid~label {
+	top: -28px;
+	left: 0;
+	color: #03a9f4;
+	font-size: 12px;
+}
+
+.box input[type="submit"] {
+	background: transparent;
+	border: none;
+	outline: none;
+	color: #fff;
+	background: linear-gradient(45deg, #3b8d99, #6b6b83, #aa4b6b);
+	position: relative;
+	left: 30%;
+	padding: 15px 30px;
+	cursor: pointer;
+	border-radius: 5px;
+	text-transform: uppercase;
+}
+
+#error__login {
+	margin: 10px 0 25px 0;
+	color: #ff0000;
+	font-size: 18px;
+}
+
+
+@media screen and (max-width: 988px) {
+	.box {
+		width: 350px;
+		height: 500px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.box {
+		width: 350px;
+		height: 500px;
+		right: 10px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.box {
+		width: 320px;
+		height: 500px;
+		right: 10px;
+	}
+}
