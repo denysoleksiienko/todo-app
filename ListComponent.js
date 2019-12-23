@@ -56,31 +56,32 @@ export default class ListComponent extends Component {
     } else {
       this.anchor.innerHTML = `
         <ul>
-        ${
-        store.state.todo.map((todoItem, index) => {
-          if (id == index) {
-            return `
-            <li id="item ${index}"><input type="text" value="${value}">
-              <button class="save">Edit task</button>
-            </li>
-            `
-          } else {
-            let checked = "";
-            let editButton = '<button class="edit">Edit</button>';
-            if (todoItem.status === "finished") {
-              checked = "checked";
-              editButton = ""
-            }
-            return `
-            <li id="item ${index}" class="${todoItem.status}">
-              <input type="checkbox" id="check" title="Complete" class="checkbox" ${checked}>
-              <span>${todoItem.value}</span>${editButton}<button class="del">Delete</button>
-            </li>
-          `}
-        }).join('')
+          ${
+          store.state.todo.map((todoItem, index) => {
+            if (id == index) {
+              return `
+              <li id="item ${index}"><input type="text" value="${value}">
+                <button class="save">Edit task</button>
+              </li>
+              `
+            } else {
+              let checked = "";
+              let editButton = '<button class="edit">Edit</button>';
+              if (todoItem.status === "finished") {
+                checked = "checked";
+                editButton = ""
+              }
+              return `
+              <li id="item ${index}" class="${todoItem.status}">
+                <input type="checkbox" id="check" title="Complete" class="checkbox" ${checked}>
+                <span>${todoItem.value}</span>${editButton}<button class="del">Delete</button>
+              </li>
+            `}
+          }).join('')
         }
       </ul>`;
     }
+
     this.setupListeners();
 
     const suffix = store.state.todo.length !== 1 ? 's' : '';

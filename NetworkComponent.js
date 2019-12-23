@@ -4,7 +4,7 @@ import store from "./store/index.js";
 export default class NetworkRequest {
   constructor(settings) {
     this.settings = settings;
-    this.sessionAuth = null;
+    this.authorized = null;
   }
   
   errorLogin(value) {
@@ -28,13 +28,13 @@ export default class NetworkRequest {
     .then(response => response.json())
     .then(obj => {
       console.log( obj.id );
-      this.sessionAuth = obj;
-      console.log( this.sessionAuth );
-      if (!this.sessionAuth.error) {
-        store.dispatch('login', this.sessionAuth);
+      this.authorized = obj;
+      console.log( this.authorized );
+      if (!this.authorized.error) {
+        store.dispatch('login', this.authorized);
 
-        localStorage.setItem('id', this.sessionAuth.id);
-        localStorage.setItem('token', this.sessionAuth.token);
+        localStorage.setItem('id', this.authorized.id);
+        localStorage.setItem('token', this.authorized.token);
 
         console.log( localStorage.getItem('token' ) );
 
@@ -43,41 +43,37 @@ export default class NetworkRequest {
       }
     })
     .catch(error => error.json())
-    .then(objError => {
-      if (objError.error === 'User does not exist') {
-        console.log( 'User does not exist!' );
-
+    .then(obj => {
+      if (obj.error === 'User does not exist') {
+        console.log( 'no login' );
         this.errorLogin('Please, enter a correct login');
-        console.log( 'Please, enter a correct login' );
-
-      } else if (objError.error === 'Wrong password') {
+      } else if (obj.error === 'Wrong password') {
         this.errorLogin('Please, enter a correct password');
-
-        console.log( 'Please, enter a correct password' );
+        console.log( 'no pass' );
       }
     });
   }
 
   authRequest(settings) {
-    if (localStorage.getItem('token' )) {
+    if (localStorage.getItem('token')) {
       fetch('https://todo-app-back.herokuapp.com/me', {
         method: 'GET',
         headers: {
-          'Authorization': `${localStorage.getItem('token' )}`
+          'Authorization': `${localStorage.getItem('token')}`
         }
       })
       .then(response => response.json())
       .then(obj => {
-        this.sessionAuth = obj;
-        console.log( this.sessionAuth );
-        if (!this.sessionAuth.error) {
-          store.dispatch('login', this.sessionAuth);
+        this.authorized = obj;
+        console.log( this.authorized );
+        if (!this.authorized.error) {
+          store.dispatch('login', this.authorized);
 
-          localStorage.setItem('id', this.sessionAuth.id);
-          localStorage.setItem('token', this.sessionAuth.token);
+          localStorage.setItem('id', this.authorized.id);
+          localStorage.setItem('token', this.authorized.token);
 
-          console.log( localStorage.getItem('token' ) );
-          console.log( localStorage.getItem('id' ) );
+          console.log( localStorage.getItem('token'));
+          console.log( localStorage.getItem('id'));
 
           console.log( store );
           link(settings.redirect)

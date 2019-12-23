@@ -18,7 +18,7 @@ export default class LoginComponent extends Component {
 
   errorLogin(value) {
     const error = document.querySelector('#error__login');
-    console.log(error.textContent)
+    console.log(error)
     // return
     return error.innerText = value;
   }
@@ -35,7 +35,7 @@ export default class LoginComponent extends Component {
       console.dir(store);
 
     } else if ((!login && password) || (login && !password)) {
-      login ? this.errorLogin('Please, enter your password.') : this.errorLogin('Please, enter your login.');
+      login ? this.errorLogin('Please, enter your login.') : this.errorLogin('Please, enter your password.');
   
     } else if (!login && !password) {
       this.errorLogin('Please, enter your login and password.');
